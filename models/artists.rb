@@ -11,7 +11,18 @@ class Artist
   end
 
   def create()
-    
+    sql = "INSERT INTO music_collection
+     (
+       name
+     )
+     VALUES
+     (
+       $1
+     )
+     RETURNING id
+     "
+     values = [@name]
+     @id = SqlRunner.run(sql, values)[0]['id'].to_i
   end
 
 end
